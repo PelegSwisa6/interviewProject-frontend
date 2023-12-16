@@ -57,7 +57,7 @@ function RequestQuestions() {
     if (type == "q") {
       subject = "question";
     }
-    fetch("https://interviewproject-api.onrender.com/api/send-email", {
+    fetch("http://localhost:8000/api/send-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -105,7 +105,8 @@ function RequestQuestions() {
           sx={{
             maxWidth: isSmallScreen ? "90%" : 700,
             width: "100%",
-            minHeight: 500,
+            minHeight: 200,
+            maxHeight: 700,
             p: 2,
           }}
         >

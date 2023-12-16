@@ -68,7 +68,7 @@ function FlashCardsPage() {
       topics: selectedTopics.join(","),
     });
     const response = await fetch(
-      `https://interviewproject-api.onrender.com/api/get-Quizs-topic?${params.toString()}`,
+      `http://localhost:8000/api/get-Quizs-topic?${params.toString()}`,
       {
         method: "GET",
         headers: {
@@ -130,8 +130,6 @@ function FlashCardsPage() {
       <ResponsiveAppBar />
       <Grid
         container
-        direction="column"
-        alignItems="center"
         justifyContent="center"
         sx={{
           bgcolor: "text.disabled",
@@ -147,6 +145,7 @@ function FlashCardsPage() {
               width: "100%",
               minHeight: 500,
               p: 2,
+              maxHeight: 700,
             }}
           >
             <div>

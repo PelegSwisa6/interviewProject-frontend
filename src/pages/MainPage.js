@@ -1,13 +1,22 @@
 import React from "react";
 import { useLogOut } from "../hooks/useLogOut";
 import ResponsiveAppBar from "../components/ResponsiveAppBar";
-import { Box, Typography, Container, Paper } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Container,
+  useMediaQuery,
+  Paper,
+} from "@mui/material";
 import CustomButton from "../components/CustomButton";
 import { Link } from "react-router-dom";
 import CustomTypography from "../components/CustomTypography";
+import { useTheme } from "@mui/material";
 
 function MainPage() {
   const { logout } = useLogOut();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,25 +27,23 @@ function MainPage() {
   return (
     <div>
       <ResponsiveAppBar />
-      <Box
+      <Grid
+        container
+        justifyContent="center"
         sx={{
-          direction: "rtl",
           bgcolor: "text.disabled",
-          backgroundSize: "cover",
-          height: "93vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+          minHeight: "100vh",
+          padding: 2,
         }}
       >
         <Paper
           elevation={3}
           sx={{
-            maxWidth: "90%",
+            maxWidth: isSmallScreen ? "90%" : 700,
             width: "100%",
-            minHeight: "80%",
+            minHeight: isSmallScreen ? "90%" : "100%",
             p: 2,
+            maxHeight: 700,
           }}
         >
           <Container maxWidth="sm" textAlign="center">
@@ -75,7 +82,7 @@ function MainPage() {
             </CustomButton>
           </Container>
         </Paper>
-      </Box>
+      </Grid>
     </div>
   );
 }

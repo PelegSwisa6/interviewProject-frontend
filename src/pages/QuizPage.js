@@ -5,9 +5,8 @@ import CustomButton from "../components/CustomButton";
 import CustomTypography from "../components/CustomTypography";
 import { useAuthContext } from "../hooks/useAuthContext";
 import {
-  Box,
+  Grid,
   Typography,
-  Container,
   Stack,
   Paper,
   Checkbox,
@@ -82,7 +81,7 @@ function QuizPage() {
         });
 
         const response = await fetch(
-          `https://interviewproject-api.onrender.com/api/get-Quizs-topic?${params.toString()}`,
+          `http://localhost:8000/api/get-Quizs-topic?${params.toString()}`,
           {
             method: "GET",
             headers: {
@@ -114,7 +113,7 @@ function QuizPage() {
     const quizId = quizQuestions[currentQuestion]._id;
     const userId = user.id;
     const lengthOfBankQuestion = bankQuestions;
-    fetch("https://interviewproject-api.onrender.com/api/update-user-answer", {
+    fetch("http://localhost:8000/api/update-user-answer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -189,146 +188,142 @@ function QuizPage() {
   };
 
   return (
-    <div style={{ bgcolor: "text.disabled", minHeight: "100vh" }}>
+    <div dir="rtl" style={{ bgcolor: "text.disabled", minHeight: "100vh" }}>
       <ResponsiveAppBar />
-      <Box
+      <Grid
+        container
+        justifyContent="center"
         sx={{
-          direction: "rtl",
           bgcolor: "text.disabled",
-          backgroundSize: "cover",
           minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "normal",
-          alignItems: "center",
+          padding: 2,
         }}
       >
-        <Container maxWidth="sm" textAlign="center">
-          {quizQuestions.length == 0 && (
-            <Paper
-              elevation={3}
+        {quizQuestions.length == 0 && (
+          <Paper
+            elevation={3}
+            sx={{
+              maxWidth: 700,
+              width: "90%",
+              p: 2,
+              maxHeight: 700,
+            }}
+          >
+            <Typography
+              mt={7}
+              mb={3}
+              textAlign={"center"}
+              fontSize={{ xs: 24, md: 32 }}
+              fontFamily={"sans-serif"}
+              variant="h6"
               sx={{
-                maxWidth: 700,
-                width: "90%",
-                p: 2,
-                mt: 2,
+                textAlign: "center",
+                maxWidth: 4000,
+                p: 1,
+                fontSize: 25,
+                fontFamily: "revert",
               }}
             >
-              <Typography
-                mt={7}
-                mb={3}
-                textAlign={"center"}
-                fontSize={{ xs: 24, md: 32 }}
-                fontFamily={"sans-serif"}
-                variant="h6"
-                sx={{
-                  textAlign: "center",
-                  maxWidth: 4000,
-                  p: 1,
-                  fontSize: 25,
-                  fontFamily: "revert",
-                }}
-              >
-                איזה שפות נתרגל?
-              </Typography>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Checkbox
-                  checked={javascriptChecked}
-                  onChange={() => handleCheckboxChange("javascript")}
-                  color="primary"
-                />
-                <CustomTypography variant="h4" maxWidth="4000">
-                  JavaScript
-                </CustomTypography>
-              </Stack>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Checkbox
-                  checked={pythonChecked}
-                  onChange={() => handleCheckboxChange("python")}
-                  color="primary"
-                />
-                <CustomTypography variant="h4" maxWidth="4000">
-                  Python
-                </CustomTypography>
-              </Stack>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Checkbox
-                  checked={javaChecked}
-                  onChange={() => handleCheckboxChange("java")}
-                  color="primary"
-                />
-                <CustomTypography variant="h4" maxWidth="4000">
-                  Java
-                </CustomTypography>
-              </Stack>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Checkbox
-                  checked={sqlChecked}
-                  onChange={() => handleCheckboxChange("sql")}
-                  color="primary"
-                />
-                <CustomTypography variant="h4" maxWidth="4000">
-                  Sql
-                </CustomTypography>
-              </Stack>
-              <CustomButton onClick={handleStart} sx={{ mt: 3, mb: 2 }}>
-                התחל לתרגל
-              </CustomButton>
-            </Paper>
-          )}
+              איזה שפות נתרגל?
+            </Typography>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Checkbox
+                checked={javascriptChecked}
+                onChange={() => handleCheckboxChange("javascript")}
+                color="primary"
+              />
+              <CustomTypography variant="h4" maxWidth="4000">
+                JavaScript
+              </CustomTypography>
+            </Stack>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Checkbox
+                checked={pythonChecked}
+                onChange={() => handleCheckboxChange("python")}
+                color="primary"
+              />
+              <CustomTypography variant="h4" maxWidth="4000">
+                Python
+              </CustomTypography>
+            </Stack>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Checkbox
+                checked={javaChecked}
+                onChange={() => handleCheckboxChange("java")}
+                color="primary"
+              />
+              <CustomTypography variant="h4" maxWidth="4000">
+                Java
+              </CustomTypography>
+            </Stack>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Checkbox
+                checked={sqlChecked}
+                onChange={() => handleCheckboxChange("sql")}
+                color="primary"
+              />
+              <CustomTypography variant="h4" maxWidth="4000">
+                Sql
+              </CustomTypography>
+            </Stack>
+            <CustomButton onClick={handleStart} sx={{ mt: 3, mb: 2 }}>
+              התחל לתרגל
+            </CustomButton>
+          </Paper>
+        )}
 
-          {quizQuestions.length > 0 && !showScore && (
-            <>
-              <Paper elevation={3} sx={{ p: 3, mt: 7 }}>
+        {quizQuestions.length > 0 && !showScore && (
+          <>
+            <Paper elevation={3} sx={{ p: 3, mt: 7 }}>
+              <div>
                 <div>
-                  <div>
-                    <CustomTypography variant="h6" maxWidth="4000">
-                      שאלה {currentQuestion + 1}
-                    </CustomTypography>
-                  </div>
-                  <CustomTypography variant="h4" maxWidth="4000">
-                    {quizQuestions[currentQuestion].question}
+                  <CustomTypography variant="h6" maxWidth="4000">
+                    שאלה {currentQuestion + 1}
                   </CustomTypography>
                 </div>
-              </Paper>
-              <Stack spacing={2} mt={4}>
-                {quizQuestions[currentQuestion].options.map((option) => (
-                  <CustomButton
-                    disabled={isButtonDisabled}
-                    key={option._id}
-                    onClick={() => handleAnswerOptionClick(option.isCorrect)}
-                    variant="outlined"
-                    sx={{ width: "100%" }}
-                  >
-                    {option.option}
-                  </CustomButton>
-                ))}
-              </Stack>
-            </>
-          )}
-
-          {showScore && (
-            <Paper elevation={3} sx={{ p: 2, mt: 7 }}>
-              <CustomTypography variant="h6" maxWidth="4000">
-                ענית על {score} תשובות נכונות מתוך {bankQuestions}
-              </CustomTypography>
-              <CustomButton
-                onClick={() => handleRestart(1)}
-                variant="outlined"
-                sx={{ width: "100%", mt: 4 }}
-              >
-                המשך
-              </CustomButton>
-              <CustomButton
-                onClick={() => handleRestart(2)}
-                variant="outlined"
-                sx={{ width: "100%", mt: 4 }}
-              >
-                שנה נושאים
-              </CustomButton>
+                <CustomTypography variant="h4" maxWidth="4000">
+                  {quizQuestions[currentQuestion].question}
+                </CustomTypography>
+              </div>
             </Paper>
-          )}
-        </Container>
+            <Stack spacing={2} mt={4}>
+              {quizQuestions[currentQuestion].options.map((option) => (
+                <CustomButton
+                  disabled={isButtonDisabled}
+                  key={option._id}
+                  onClick={() => handleAnswerOptionClick(option.isCorrect)}
+                  variant="outlined"
+                  sx={{ width: "100%" }}
+                >
+                  {option.option}
+                </CustomButton>
+              ))}
+            </Stack>
+          </>
+        )}
+
+        {showScore && (
+          <Paper elevation={3} sx={{ p: 2, mt: 7 }}>
+            <CustomTypography variant="h6" maxWidth="4000">
+              ענית על {score} תשובות נכונות מתוך {bankQuestions}
+            </CustomTypography>
+            <CustomButton
+              onClick={() => handleRestart(1)}
+              variant="outlined"
+              sx={{ width: "100%", mt: 4 }}
+            >
+              המשך
+            </CustomButton>
+            <CustomButton
+              onClick={() => handleRestart(2)}
+              variant="outlined"
+              sx={{ width: "100%", mt: 4 }}
+            >
+              שנה נושאים
+            </CustomButton>
+          </Paper>
+        )}
+
         <Snackbar
           TransitionComponent={Slide}
           open={showAlert}
@@ -346,7 +341,7 @@ function QuizPage() {
             </MuiAlert>
           </div>
         </Snackbar>
-      </Box>
+      </Grid>
     </div>
   );
 }

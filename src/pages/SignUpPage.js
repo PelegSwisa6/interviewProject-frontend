@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import CustomButton from "../components/CustomButton";
 import CustomTextField from "../components/CustomTextField";
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -112,7 +112,7 @@ function SignUp() {
               הרשמה
             </CustomButton>
             <Grid container justifyContent="flex-end">
-              <Link to="/signin" variant="body">
+              <Link href="/signin" variant="body">
                 כבר יש לך משתמש ? התחבר כאן
               </Link>
               <Grid item></Grid>

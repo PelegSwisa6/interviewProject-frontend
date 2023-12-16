@@ -11,7 +11,7 @@ export function useLogin() {
     setError(null);
 
     const response = await fetch(
-      `https://interviewproject-api.onrender.com/api/loginUser?email=${email}&password=${password}`,
+      `http://localhost:8000/api/loginUser?email=${email}&password=${password}`,
       {
         method: "GET",
         headers: {
