@@ -82,7 +82,7 @@ function QuizPage() {
         });
 
         const response = await fetch(
-          `http://localhost:8000/api/get-Quizs-topic?${params.toString()}`,
+          `https://interviewproject-api.onrender.com/api/get-Quizs-topic?${params.toString()}`,
           {
             method: "GET",
             headers: {
@@ -114,7 +114,7 @@ function QuizPage() {
     const quizId = quizQuestions[currentQuestion]._id;
     const userId = user.id;
     const lengthOfBankQuestion = bankQuestions;
-    fetch("http://localhost:8000/api/update-user-answer", {
+    fetch("https://interviewproject-api.onrender.com/api/update-user-answer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
