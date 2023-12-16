@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import CustomButton from "../components/CustomButton";
 import CssBaseline from "@mui/material/CssBaseline";
 import CustomTextField from "../components/CustomTextField";
-import Link from "@mui/material/Link";
+// import { Link } from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { useLogin } from "../hooks/useLogin";
 import MuiAlert from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
@@ -90,8 +91,8 @@ function SignIn() {
             <Grid container>
               <Grid item xs></Grid>
               <Grid item>
-                <Link href="#/signup" variant="body">
-                  {"עדיין אין לך משתמש ? הירשם כאן"}
+                <Link to="/signup" variant="body">
+                  עדיין אין לך משתמש ? הירשם כאן
                 </Link>
               </Grid>
             </Grid>
