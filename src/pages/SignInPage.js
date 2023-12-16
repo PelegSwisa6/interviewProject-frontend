@@ -90,7 +90,7 @@ function SignIn() {
             <Grid container>
               <Grid item xs></Grid>
               <Grid item>
-                <Link href="/signup" variant="body">
+                <Link href="#/signup" variant="body">
                   {"עדיין אין לך משתמש ? הירשם כאן"}
                 </Link>
               </Grid>

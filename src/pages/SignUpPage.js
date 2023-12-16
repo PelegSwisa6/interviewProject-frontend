@@ -112,7 +112,7 @@ function SignUp() {
               הרשמה
             </CustomButton>
             <Grid container justifyContent="flex-end">
-              <Link href="/signin" variant="body">
+              <Link href="/#/signin" variant="body">
                 כבר יש לך משתמש ? התחבר כאן
               </Link>
               <Grid item></Grid>
