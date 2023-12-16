@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import CustomButton from "../components/CustomButton";
 import CssBaseline from "@mui/material/CssBaseline";
 import CustomTextField from "../components/CustomTextField";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -90,7 +90,7 @@ function SignIn() {
             <Grid container>
               <Grid item xs></Grid>
               <Grid item>
-                <Link href="/signup" variant="body">
+                <Link to="/signup" variant="body">
                   {"עדיין אין לך משתמש ? הירשם כאן"}
                 </Link>
               </Grid>
