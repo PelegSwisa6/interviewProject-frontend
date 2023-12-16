@@ -10,14 +10,11 @@ export function useSignUp() {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(
-      "https://interviewproject-api.onrender.com/api/createuser",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, lastname: lastName, email, password }),
-      }
-    );
+    const response = await fetch("http://localhost:8000/api/createuser", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, lastname: lastName, email, password }),
+    });
 
     const json = await response.json();
     if (!response.ok) {

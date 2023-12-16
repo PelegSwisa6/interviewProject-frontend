@@ -68,7 +68,7 @@ function FlashCardsPage() {
       topics: selectedTopics.join(","),
     });
     const response = await fetch(
-      `https://interviewproject-api.onrender.com/api/get-Quizs-topic?${params.toString()}`,
+      `http://localhost:8000/api/get-Quizs-topic?${params.toString()}`,
       {
         method: "GET",
         headers: {
