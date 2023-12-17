@@ -9,11 +9,13 @@ import {
   Typography,
   Stack,
   Paper,
+  useMediaQuery,
   Checkbox,
   Snackbar,
 } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import Slide from "@mui/material/Slide";
+import { useTheme } from "@mui/material";
 
 function QuizPage() {
   const [javascriptChecked, setJavascriptChecked] = useState(false);
@@ -29,6 +31,8 @@ function QuizPage() {
   const [showAlert, setShowAlert] = useState(false);
   const [isTrue, setIsTrue] = useState();
   const [isButtonDisabled, setButtonDisabled] = useState(false);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     if (isTrue != null) {
@@ -203,10 +207,11 @@ function QuizPage() {
           <Paper
             elevation={3}
             sx={{
-              maxWidth: 700,
-              width: "90%",
+              maxWidth: isSmallScreen ? "90%" : 700,
+              width: "100%",
+              minHeight: 500,
               p: 2,
-              maxHeight: 700,
+              maxHeight: isSmallScreen ? 400 : 400,
             }}
           >
             <Typography
@@ -267,14 +272,23 @@ function QuizPage() {
               </CustomTypography>
             </Stack>
             <CustomButton onClick={handleStart} sx={{ mt: 3, mb: 2 }}>
-              התחל לתרגל
+              התחל לענות על השאלות
             </CustomButton>
           </Paper>
         )}
 
         {quizQuestions.length > 0 && !showScore && (
           <>
-            <Paper elevation={3} sx={{ p: 3, mt: 7 }}>
+            <Paper
+              elevation={3}
+              sx={{
+                maxWidth: isSmallScreen ? "90%" : 700,
+                width: "100%",
+                minHeight: 500,
+                p: 2,
+                maxHeight: isSmallScreen ? 400 : 400,
+              }}
+            >
               <div>
                 <div>
                   <CustomTypography variant="h6" maxWidth="4000">
@@ -285,20 +299,21 @@ function QuizPage() {
                   {quizQuestions[currentQuestion].question}
                 </CustomTypography>
               </div>
+
+              <Stack spacing={2} mt={4}>
+                {quizQuestions[currentQuestion].options.map((option) => (
+                  <CustomButton
+                    disabled={isButtonDisabled}
+                    key={option._id}
+                    onClick={() => handleAnswerOptionClick(option.isCorrect)}
+                    variant="outlined"
+                    sx={{ width: "100%" }}
+                  >
+                    {option.option}
+                  </CustomButton>
+                ))}
+              </Stack>
             </Paper>
-            <Stack spacing={2} mt={4}>
-              {quizQuestions[currentQuestion].options.map((option) => (
-                <CustomButton
-                  disabled={isButtonDisabled}
-                  key={option._id}
-                  onClick={() => handleAnswerOptionClick(option.isCorrect)}
-                  variant="outlined"
-                  sx={{ width: "100%" }}
-                >
-                  {option.option}
-                </CustomButton>
-              ))}
-            </Stack>
           </>
         )}
 

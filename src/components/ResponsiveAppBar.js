@@ -107,7 +107,11 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  dir="rtl"
+                  key={page.name}
+                  onClick={handleCloseNavMenu}
+                >
                   <Typography
                     variant="h6"
                     noWrap

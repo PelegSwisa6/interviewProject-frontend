@@ -11,12 +11,14 @@ import {
   Stack,
   Checkbox,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTheme } from "@mui/material";
 import CustomButton from "../components/CustomButton";
 import CustomTypography from "../components/CustomTypography";
 import { useAuthContext } from "../hooks/useAuthContext";
+
 function FlashCardsPage() {
   const [start, setStart] = useState(false);
   const [chooseTopics, setChooseTopic] = useState(false);
@@ -332,6 +334,13 @@ function FlashCardsPage() {
               </CustomButton>
               <CustomButton onClick={handleRestart} sx={{ marginTop: 5 }}>
                 שנה נושאים
+              </CustomButton>
+              <CustomButton
+                component={Link}
+                to="/quiz-practice"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                תרגלת מספיק? התחל לענות על שאלות
               </CustomButton>
             </CardContent>
           </Card>
